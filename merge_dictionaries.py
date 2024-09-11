@@ -1,19 +1,20 @@
 def merge_dicts(dict1, dict2):
     """
-    This function merges two dictionaries. If a key is present in both dictionaries,
-    their values are summed.
-    
-    Parameters:
-    dict1 (dict): The first dictionary.
-    dict2 (dict): The second dictionary.
-    
-    Returns:
-    dict: The merged dictionary with summed values for common keys.
+    Merges two dictionaries. If there are common keys, their values are summed up.
     """
-    merged = dict1.copy()  # Start with dict1's keys and values
+    if not (isinstance(dict1, dict) and isinstance(dict2, dict)):
+        raise ValueError("Both arguments must be dictionaries.")
+    merged = dict1.copy()
     for key, value in dict2.items():
-        if key in merged:
-            merged[key] += value
-        else:
-            merged[key] = value
+        merged[key] = merged.get(key, 0) + value
     return merged
+
+if __name__ == "__main__":
+    try:
+        dict1 = eval(input("Enter the first dictionary (e.g., {'a': 1, 'b': 2}): "))
+        dict2 = eval(input("Enter the second dictionary (e.g., {'b': 3, 'c': 4}): "))
+        if not isinstance(dict1, dict) or not isinstance(dict2, dict):
+            raise ValueError("Inputs must be valid dictionaries.")
+        print(f"Merged dictionary: {merge_dicts(dict1, dict2)}")
+    except Exception as e:
+        print(e)

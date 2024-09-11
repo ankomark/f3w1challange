@@ -1,13 +1,12 @@
 def count_vowels(text):
     """
-    This function counts the number of vowels in a string.
-    
-    Parameters:
-    text (str): The input string.
-    
-    Returns:
-    int: The number of vowels in the string.
+    Returns the count of vowels in the input string text, ignoring case.
     """
-    vowels = 'aeiouAEIOU'
-    count = sum(1 for char in text if char in vowels)
-    return count
+    if not isinstance(text, str):
+        raise ValueError("The argument must be a string.")
+    vowels = set("aeiou")
+    return sum(1 for char in text.lower() if char in vowels)
+
+if __name__ == "__main__":
+    text = input("Enter a string to count vowels: ")
+    print(f"Number of vowels in the string: {count_vowels(text)}")

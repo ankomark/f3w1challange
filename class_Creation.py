@@ -1,20 +1,24 @@
 class Car:
     """
-    A class representing a car.
-    
-    Attributes:
-    make (str): The manufacturer of the car.
-    model (str): The model of the car.
-    year (int): The year the car was manufactured.
+    Represents a Car object with attributes: make, model, year.
     """
-    
     def __init__(self, make, model, year):
         self.make = make
         self.model = model
         self.year = year
-    
+
     def display_info(self):
         """
-        This method prints out the car's information.
+        Prints the car's information.
         """
-        print(f"Car Information: {self.year} {self.make} {self.model}")
+        print(f"Car Make: {self.make}, Model: {self.model}, Year: {self.year}")
+
+if __name__ == "__main__":
+    make = input("Enter car make: ")
+    model = input("Enter car model: ")
+    try:
+        year = int(input("Enter car year: "))
+        car = Car(make, model, year)
+        car.display_info()
+    except ValueError:
+        print("Invalid input for year. It must be an integer.")

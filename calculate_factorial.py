@@ -1,14 +1,18 @@
 def calculate_factorial(n):
     """
-    This function calculates the factorial of a non-negative integer.
-    
-    Parameters:
-    n (int): The non-negative integer to calculate the factorial of.
-    
-    Returns:
-    int: The factorial of the input number.
+    Returns the factorial of a non-negative integer n.
     """
-    if n == 0 or n == 1:
-        return 1
-    else:
-        return n * calculate_factorial(n - 1)
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("The argument must be a non-negative integer.")
+    factorial = 1
+    for i in range(1, n + 1):
+        factorial *= i
+    return factorial
+
+if __name__ == "__main__":
+    try:
+        n = int(input("Enter a non-negative integer to calculate its factorial: "))
+        print(f"The factorial of {n} is: {calculate_factorial(n)}")
+    except ValueError as e:
+        print(e)
+
